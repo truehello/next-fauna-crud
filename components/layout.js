@@ -1,5 +1,4 @@
 import Head from 'next/head';
-//import styles from './layout.module.css';
 
 const Layout = ({ children }) => (
   <div className="flex items-center justify-center h-screen w-screen">
