@@ -11,10 +11,6 @@ const Home = ({ token }) => {
 
   const { data: user } = useSWR("/api/user");
 
-  //const userFetcher = (url) => fetch(url).then((r) => r.json());
-
-  //const { data: user, mutate: mutateUser } = useSWR("/api/user", userFetcher);
-
   const { data, error, mutate } = useSWR(
     gql`
       {
@@ -23,7 +19,9 @@ const Home = ({ token }) => {
             _id
             task
             completed
-            
+            owner {
+              _id
+            }
           }
         }
       }
@@ -108,30 +106,30 @@ const Home = ({ token }) => {
               >
                 {todo.task}
               </span>
-              
-              {user ? (
-              <div>
-                <span className="ml-4">
-                  <Link href="/todo/[id]" as={`/todo/${todo._id}`}>
-                    <a className="rounded-md py-2 px-4 text-gray-100 bg-blue-500 hover:bg-blue-600 focus:outline-none">
-                      Edit
-                    </a>
-                  </Link>
-                </span>
-                <span
-                  onClick={() => deleteATodo(todo._id)}
-                  className="ml-2 rounded-md py-2 px-4 text-gray-100 bg-red-500 hover:bg-red-600 focus:outline-none"
-                >
-                  Delete
-                </span>
-              </div>
+
+              {user && user.id === todo.owner._id ? (
+                <div>
+                  <span className="ml-4">
+                    <Link href="/todo/[id]" as={`/todo/${todo._id}`}>
+                      <a className="rounded-md py-2 px-4 text-gray-100 bg-blue-500 hover:bg-blue-600 focus:outline-none">
+                        Edit
+                      </a>
+                    </Link>
+                  </span>
+                  <span
+                    onClick={() => deleteATodo(todo._id)}
+                    className="ml-2 rounded-md py-2 px-4 text-gray-100 bg-red-500 hover:bg-red-600 focus:outline-none"
+                  >
+                    Delete
+                  </span>
+                </div>
               ) : (
                 <Link href="/todo/[id]" as={`/todo/${todo._id}`}>
-                <a className="rounded-md py-2 px-4 text-gray-100 bg-blue-500 hover:bg-blue-600 focus:outline-none">
-                  View
-                </a>
-              </Link>
-                )}
+                  <a className="rounded-md py-2 px-4 text-gray-100 bg-blue-500 hover:bg-blue-600 focus:outline-none">
+                    View
+                  </a>
+                </Link>
+              )}
             </li>
           ))}
         </ul>
