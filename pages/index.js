@@ -30,7 +30,7 @@ const Home = ({ token }) => {
   );
 
   const toggleTodo = async (id, completed) => {
-    const query = gql`
+    const mutation = gql`
       mutation PartialUpdateTodo($id: ID!, $completed: Boolean!) {
         partialUpdateTodo(id: $id, data: { completed: $completed }) {
           _id
@@ -55,7 +55,7 @@ const Home = ({ token }) => {
   };
 
   const deleteATodo = async (id) => {
-    const query = gql`
+    const mutation = gql`
       mutation DeleteATodo($id: ID!) {
         deleteTodo(id: $id) {
           _id
@@ -93,21 +93,24 @@ const Home = ({ token }) => {
           {data.allTodos.data.map((todo) => (
             <li
               key={todo._id}
-              className="flex items-center justify-between py-2"
+              className="flex items-center justify-between py-4"
             >
-              <span
-                className="text-base leading-5 font-medium text-gray-700"
-                onClick={() => toggleTodo(todo._id, todo.completed)}
-                style={
-                  todo.completed
-                    ? { textDecorationLine: "line-through" }
-                    : { textDecorationLine: "none" }
-                }
-              >
-                {todo.task}
-              </span>
+              
 
               {user && user.id === todo.owner._id ? (
+                 <>
+                 <span
+                 className="text-base font-medium text-gray-700 cursor-pointer"
+                 onClick={() => toggleTodo(todo._id, todo.completed)}
+                 style={
+                   todo.completed
+                     ? { textDecorationLine: "line-through" }
+                     : { textDecorationLine: "none" }
+                 }
+               >
+                 {todo.task}
+               </span>
+
                 <div>
                   <span className="ml-4">
                     <Link href="/todo/[id]" as={`/todo/${todo._id}`}>
@@ -116,19 +119,25 @@ const Home = ({ token }) => {
                       </a>
                     </Link>
                   </span>
-                  <span
+                  <button
                     onClick={() => deleteATodo(todo._id)}
-                    className="ml-2 rounded-md py-2 px-4 text-gray-100 bg-red-500 hover:bg-red-600 focus:outline-none"
+                    className=" ml-2 rounded-md py-2 px-4 text-gray-100 bg-red-500 hover:bg-red-600 focus:outline-none"
                   >
                     Delete
-                  </span>
+                  </button>
                 </div>
+                </>
               ) : (
+                <>
+                <span className="text-base font-medium text-gray-700">
+                {todo.task}
+              </span>
                 <Link href="/todo/[id]" as={`/todo/${todo._id}`}>
                   <a className="rounded-md py-2 px-4 text-gray-100 bg-blue-500 hover:bg-blue-600 focus:outline-none">
                     View
                   </a>
                 </Link>
+                </>
               )}
             </li>
           ))}
