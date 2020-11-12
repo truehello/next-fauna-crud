@@ -1,30 +1,48 @@
 import { useState } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
 import { gql } from 'graphql-request';
 import { useForm } from 'react-hook-form';
 import Layout from '../components/layout';
 import { graphQLClient } from '../utils/graphql-client';
+import { getAuthCookie } from '../utils/auth-cookies';
 
-const New = () => {
+const New = ({token}) => {
+
+  const router = useRouter();
+
+  const { data: user } = useSWR('/api/user');
+
   const [errorMessage, setErrorMessage] = useState('');
 
   const { handleSubmit, register, errors } = useForm();
 
-  const onSubmit = handleSubmit(async ({ task }) => {
+
+    const onSubmit = handleSubmit(async ({ task }) => {
     if (errorMessage) setErrorMessage('');
 
-    const query = gql`
-      mutation CreateATodo($task: String!) {
-        createTodo(data: { task: $task, completed: false }) {
+    const mutation = gql`
+      mutation CreateATodo($task: String!, $owner: ID!) {
+        createTodo(
+          data: { task: $task, completed: false, owner: { connect: $owner } }
+        ) {
           task
           completed
+          owner {
+            _id
+          }
         }
       }
     `;
 
+    const variables = {
+      task,
+      owner: user && user.id,
+    };
+
     try {
-      await graphQLClient.request(query, { task });
-      Router.push('/');
+      await graphQLClient(token).request(mutation, variables);
+      router.push('/');
     } catch (error) {
       console.error(error);
       setErrorMessage(error.message);
@@ -39,7 +57,7 @@ const New = () => {
         <div>
           <label>Task</label>
           <input
-          className="border border-gray-400 bg-gray-200 text-gray-900 w-full rounded p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+          className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
             name="task"
             placeholder="e.g. do something"
@@ -65,5 +83,10 @@ const New = () => {
     </Layout>
   );
 };
+
+export async function getServerSideProps(ctx) {
+  const token = getAuthCookie(ctx.req);
+  return { props: { token: token || null } };
+}
 
 export default New;

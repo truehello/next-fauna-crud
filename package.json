@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "cookie": "^0.4.1",
     "faunadb": "^3.0.1",
     "graphql": "^15.4.0",
     "graphql-request": "^3.3.0",
