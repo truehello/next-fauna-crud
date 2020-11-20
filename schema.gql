@@ -4,11 +4,28 @@ type Todo {
   owner: User!
 }
 
+type Video {
+  name: String!
+  location: String!
+  city: String
+  country: String
+  latitude: Int
+  longitude: Int
+  description: String
+  image: String
+  date: String
+  url: String
+  owner: User!
+}
+
 type User {
   email: String! @unique
   todos: [Todo!] @relation
+  videos: [Video!] @relation
 }
 
 type Query {
   allTodos: [Todo!]
+  allVideos: [Video!]
 }
+
