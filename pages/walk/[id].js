@@ -1,3 +1,4 @@
+import YouTube from 'react-youtube';
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { gql } from "graphql-request";
@@ -47,6 +48,15 @@ const Todo = ({ token }) => {
   }
 
   // console.log(isOwner, isOwner)
+  const opts = {
+    height: '390',
+    width: '640',
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  };
+
 
   if (error) return <div>failed to load</div>;
 
@@ -57,7 +67,7 @@ const Todo = ({ token }) => {
           <h1 className="text-2xl mb-2 font-semibold">
             {data.findVideoByID.name}
           </h1>
-
+          <YouTube videoId="oe8HC3nTArc" opts={opts}  />
           <p> {data.findVideoByID.location}</p>
           <p> {data.findVideoByID.city}</p>
           <p> {data.findVideoByID.country}</p>
