@@ -18,8 +18,8 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full mb-8">
-      <nav className="bg-pink-800">
+    <header className="w-full">
+      <nav className="text-purple-100" style={{backgroundColor: 'rgba(74,29,150,1)'}}>
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -61,18 +61,26 @@ const Header = () => {
             </div>
             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex-shrink-0">
-                <img
-                  className="block lg:hidden h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/v1/workflow-mark-on-dark.svg"
-                  alt="Workflow logo"
-                />
-                <img
-                  className="hidden lg:block h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/v1/workflow-logo-on-dark.svg"
-                  alt="Workflow logo"
-                />
+                <Link href="/">
+                  <a>
+                    <img
+                      className="block lg:hidden h-8 w-auto"
+                      src="https://tailwindui.com/img/logos/v1/workflow-mark-on-dark.svg"
+                      alt="Workflow logo"
+                    />
+                  </a>
+                </Link>
+                <Link href="/">
+                  <a>
+                    <img
+                      className="hidden lg:block h-8 w-auto"
+                      src="https://tailwindui.com/img/logos/v1/workflow-logo-on-dark.svg"
+                      alt="Workflow logo"
+                    />
+                  </a>
+                </Link>
               </div>
-              <div className="hidden sm:block sm:ml-6">
+              {/* <div className="hidden sm:block sm:ml-6">
                 <div className="flex">
                   <Link href="/">
                     <a className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
@@ -80,48 +88,48 @@ const Header = () => {
                     </a>
                   </Link>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <div className="flex items-center">
-                      {user ? (
-                        <>
-                          <div className="flex">
-                            <Link href="/profile">
-                              <a className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
-                                {user.email}</a>
-                            </Link>
-                          </div>
-                          <div>
-                            <button
-                            className="ml-2 px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out" 
-                            onClick={logout}>Logout</button>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          <div className="flex">
-                            <Link href="/login">
-                              <a
-                              className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
-                              >Login</a>
-                            </Link>
-                          </div>
-                          <div>
-                            <Link href="/signup">
-                              <a
-                              className="ml-2 px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
-                              >Signup</a>
-                            </Link>
-                          </div>
-                        </>
-                      )}
+              <div className="flex items-center">
+                {user ? (
+                  <>
+                    <div className="flex">
+                      <Link href="/profile">
+                        <a className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                          {user.email}
+                        </a>
+                      </Link>
                     </div>
-              
-              
-              
-             
+                    <div>
+                      <button
+                        className="ml-2 px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+                        onClick={logout}
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex">
+                      <Link href="/login">
+                        <a className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                          Login
+                        </a>
+                      </Link>
+                    </div>
+                    <div>
+                      <Link href="/signup">
+                        <a className="ml-2 px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                          Signup
+                        </a>
+                      </Link>
+                    </div>
+                  </>
+                )}
+              </div>
 
               <div className="ml-3 relative">
                 <div>
@@ -138,14 +146,10 @@ const Header = () => {
                     />
                   </button>
                 </div>
-
-                
               </div>
             </div>
           </div>
         </div>
-
-       
       </nav>
     </header>
   );

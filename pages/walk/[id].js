@@ -6,8 +6,9 @@ import Layout from "../../components/layout";
 //import EditForm from "../../components/edit-form";
 import { graphQLClient } from "../../utils/graphql-client";
 import { getAuthCookie } from "../../utils/auth-cookies";
+import TextTruncate from "react-text-truncate";
 
-const Todo = ({ token }) => {
+const Walk = ({ token }) => {
   const router = useRouter();
   const { data: user } = useSWR("/api/user");
 
@@ -27,7 +28,8 @@ const Todo = ({ token }) => {
         latitude
         longitude
         image
-        url
+        video_url
+        video_id
         description
         owner {
           _id
@@ -64,25 +66,31 @@ const Todo = ({ token }) => {
     <Layout>
       {data ? (
         <>
-          <h1 className="text-2xl mb-2 font-semibold">
+          <h1 className="text-2xl mb-2 font-semibold text-white">
             {data.findVideoByID.name}
           </h1>
-          <YouTube videoId="oe8HC3nTArc" opts={opts}  />
-          <p> {data.findVideoByID.location}</p>
-          <p> {data.findVideoByID.city}</p>
-          <p> {data.findVideoByID.country}</p>
-          <p> {data.findVideoByID.url}</p>
-          <p> {data.findVideoByID.description}</p>
+          <YouTube videoId={data.findVideoByID.video_id} opts={opts}  />
+          <p className="text-gray-100"> {data.findVideoByID.location}</p>
+          <p className="text-gray-100"> {data.findVideoByID.city}</p>
+          <p className="text-gray-100"> {data.findVideoByID.country}</p>
+          <TextTruncate
+              line={7}
+              element="p"
+              truncateText="…"
+              text={data.findVideoByID.description}
+              className="content-text text-gray-100 tracking-tight"
+            />
+          
           <p>lat: {data.findVideoByID.latitude}</p>
           <p>lon: {data.findVideoByID.longitude}</p>
-          <p>date: {data.findVideoByID.date}</p>
+          <p className="text-gray-100">date: {data.findVideoByID.date}</p>
         </>
       ) : (
         <div>loading...</div>
       )}
 
       {isOwner && (
-        <button className="mb-4 rounded-md py-2 px-4 text-yellow-100 bg-yellow-500 hover:bg-yellow-600 focus:outline-none">
+        <button className="px-8 py-2 text-lg font-semibold text-white rounded-lg sm:block bg-gradient-to-r hover:from-teal-400 hover:to-blue-500 from-pink-600 to-orange-500">
           Edit Walk
         </button>
       )}
@@ -95,4 +103,4 @@ export async function getServerSideProps(ctx) {
   return { props: { token: token || null } };
 }
 
-export default Todo;
+export default Walk;

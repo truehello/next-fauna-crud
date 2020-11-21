@@ -16,7 +16,7 @@ const New = ({ token }) => {
 
   const { handleSubmit, register, errors } = useForm();
 
-  const onSubmit = handleSubmit(async ({ name, city, location, country, description, url, date, image }) => {
+  const onSubmit = handleSubmit(async ({ name, city, location, country, description, video_url, video_id, video_host, credit, date, image }) => {
     if (errorMessage) setErrorMessage("");
 
     const mutation = gql`
@@ -26,7 +26,10 @@ const New = ({ token }) => {
         $city: String
         $country: String
         $description: String
-        $url: String
+        $video_url: String
+        $video_id: String
+        $video_host: String
+        $credit: String
         $date: String
         $image: String
         $owner: ID!
@@ -38,7 +41,10 @@ const New = ({ token }) => {
             location: $location
             country: $country
             description: $description
-            url: $url
+            video_url: $video_url
+            video_id: $video_id
+            video_host: $video_host
+            credit: $credit
             date: $date
             image: $image
             owner: { connect: $owner }
@@ -49,7 +55,10 @@ const New = ({ token }) => {
           location
           country
           description
-          url
+          video_url
+          video_id
+          video_host
+          credit
           date
           image
           owner {
@@ -65,7 +74,10 @@ const New = ({ token }) => {
       location,
       country,
       description,
-      url,
+      video_url,
+      video_id,
+      video_host,
+      credit,
       date,
       image,
       owner: user && user.id,
@@ -128,7 +140,7 @@ const New = ({ token }) => {
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
-            name="url"
+            name="video_url"
             placeholder="e.g. https://youtube.com/walkabout"
             ref={register({ required: "a video URL is required" })}
           />
@@ -137,7 +149,26 @@ const New = ({ token }) => {
               role="alert"
               className="bg-red-200 shadow-md rounded px-4 py-2 mt-4 text-red-800"
             >
-              {errors.url.message}
+              {errors.video_url.message}
+            </span>
+          )}
+        </div>
+
+        <div>
+          <label>Video ID</label>
+          <input
+            className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+            type="text"
+            name="video_id"
+            placeholder="oe8HC3nTArc"
+            ref={register({ required: "a video ID is required" })}
+          />
+          {errors.url && (
+            <span
+              role="alert"
+              className="bg-red-200 shadow-md rounded px-4 py-2 mt-4 text-red-800"
+            >
+              {errors.video_id.message}
             </span>
           )}
         </div>
@@ -208,6 +239,28 @@ const New = ({ token }) => {
             type="text"
             name="date"
             placeholder="e.g. date"
+            ref={register}
+          />
+        </div>
+
+        <div>
+          <label>Video Host</label>
+          <input
+            className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+            type="text"
+            name="video_host"
+            placeholder="oe8HC3nTArc"
+            ref={register}
+          />
+        </div>
+
+        <div>
+          <label>Credit</label>
+          <input
+            className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+            type="text"
+            name="credit"
+            placeholder="oe8HC3nTArc"
             ref={register}
           />
         </div>

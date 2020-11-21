@@ -5,6 +5,7 @@ import Layout from "../components/layout";
 import { graphQLClient } from "../utils/graphql-client";
 import Link from "next/link";
 import { getAuthCookie } from "../utils/auth-cookies";
+import TextTruncate from "react-text-truncate";
 
 const Home = ({ token }) => {
   const fetcher = async (query) => await graphQLClient(token).request(query);
@@ -25,7 +26,6 @@ const Home = ({ token }) => {
             latitude
             longitude
             image
-            url
             description
             owner {
               _id
@@ -90,32 +90,39 @@ const Home = ({ token }) => {
 
   return (
     <Layout>
-      <h1 className="text-2xl py-4 mb-4 font-semibold">Walk About</h1>
+      <h1 className="text-2xl py-4 mb-4 font-semibold text-white">Walk Flow</h1>
       {/* show add a video link if user is logged in */}
       {user && (
         <Link href="/addVideo">
-          <a className="mb-4 rounded-md py-2 px-4 text-yellow-100 bg-yellow-500 hover:bg-yellow-600 focus:outline-none">
+          <a className="px-8 py-2 text-lg font-semibold text-white rounded-lg bg-gradient-to-r hover:from-teal-400 hover:to-blue-500 from-pink-600 to-orange-500">
             Add a Video
           </a>
         </Link>
       )}
 
       {data ? (
-        <ul className="grid grid-cols-2 gap-4 mt-4">
+        <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
           {data.allVideos.data.map((video) => (
-            <li key={video._id} className="p-4 border border-gray-500 rounded">
+            <li key={video._id} className="p-4 bg-opacity-75 bg-gradient-to-r from-purple-700 to-blue-500 text-gray-100 rounded">
               <p className="text-lg font-semibold">{video.name}</p>
               <p>location: {video.location}</p>
               <p>city: {video.city}</p>
               <p>country: {video.country}</p>
-              <p>desc:{video.description}</p>
+             
+              <TextTruncate
+              line={3}
+              element="p"
+              truncateText="…"
+              text={video.description}
+              className="content-text text-gray-200 tracking-tight"
+            />
               <p>date:{video.date}</p>
-              <p>url: {video.url}</p>
+              
               <p>latitude: {video.latitude}</p>
               <p className="mb-4">longitude: {video.longitude}</p>
               <Link href="/walk/[id]" as={`/walk/${video._id}`}>
-                <a className="rounded-md py-2 px-4 text-gray-100 bg-blue-500 hover:bg-blue-600 focus:outline-none">
-                  Edit
+                <a className="px-8 py-2 text-lg font-semibold text-white rounded-lg bg-gradient-to-r hover:from-teal-400 hover:to-blue-500 from-pink-600 to-orange-500">
+                  Visit
                 </a>
               </Link>
             </li>

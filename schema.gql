@@ -14,7 +14,10 @@ type Video {
   description: String
   image: String
   date: String
-  url: String
+  video_url: String
+  video_id: String
+  video_host: String
+  credit: String
   owner: User!
 }
 
