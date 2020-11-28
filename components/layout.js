@@ -10,7 +10,7 @@ const Layout = ({ children }) => (
     <div className="flex flex-col min-h-screen w-screen">
     <Header />
     <main className="flex flex-grow items-center justify-center pt-10 pb-40 " style={{backgroundColor: 'rgba(74,29,150,1)'}}>
-      <div className="w-3/4 md:w-1/2">
+      <div className="w-full px-4 lg:px-10">
           {children}
       </div>
     </main>

@@ -94,7 +94,7 @@ const New = ({ token }) => {
 
   return (
     <Layout>
-      <h1 className="text-2xl mb-2 font-semibold">Add A New Video</h1>
+      <h1 className="text-gray-100 text-2xl mb-2 font-semibold">Add A New Video</h1>
 
       <form onSubmit={onSubmit} className="form">
         <div>
