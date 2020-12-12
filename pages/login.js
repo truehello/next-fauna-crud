@@ -43,7 +43,7 @@ const Login = () => {
 
           <form onSubmit={onSubmit} className="mt-8">
             <div>
-              <label>Email</label>
+              <label className="text-gray-100 leading-loose">Email</label>
               <input
                 aria-label="Email address"
                 type="email"
@@ -78,7 +78,7 @@ const Login = () => {
             </div>
 
             <div>
-              <label>Password</label>
+              <label className="text-gray-100 leading-loose">Password</label>
               <input
                 aria-label="Password"
                 type="password"

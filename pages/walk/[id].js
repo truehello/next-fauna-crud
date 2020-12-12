@@ -1,4 +1,4 @@
-import YouTube from 'react-youtube';
+import YouTube from "react-youtube";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { gql } from "graphql-request";
@@ -52,14 +52,13 @@ const Walk = ({ token }) => {
   // console.log(isOwner, isOwner)
   const opts = {
     paddingTop: "56.25%",
-    height: '100%',
-    width: '100%',
+    height: "100%",
+    width: "100%",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
     },
   };
-
 
   if (error) return <div>failed to load</div>;
 
@@ -70,23 +69,35 @@ const Walk = ({ token }) => {
           <h1 className="text-2xl mb-2 font-semibold text-white">
             {data.findVideoByID.name}
           </h1>
-          <div className="relative w-full" style={{paddingBottom: '56.6%'}}>
-          <YouTube videoId={data.findVideoByID.video_id} opts={opts} className="absolute top-0 left-0" />
+          <div className="relative w-full" style={{ paddingBottom: "56.6%" }}>
+            <YouTube
+              videoId={data.findVideoByID.video_id}
+              opts={opts}
+              className="absolute top-0 left-0"
+            />
           </div>
-          <p className="text-gray-100"> {data.findVideoByID.location}</p>
-          <p className="text-gray-100"> {data.findVideoByID.city}</p>
-          <p className="text-gray-100"> {data.findVideoByID.country}</p>
-          <TextTruncate
+          <div className="flex items-baseline my-6">
+            <p className="text-gray-100 font-semibold text-lg">
+              {" "}
+              {data.findVideoByID.location}
+            </p>
+            <p className="text-gray-100 text-base ml-4">
+              {data.findVideoByID.date}
+            </p>
+          </div>
+          {/* <p className="text-gray-100"> {data.findVideoByID.city}</p>
+          <p className="text-gray-100"> {data.findVideoByID.country}</p> */}
+          <div className="lg:w-3/4">
+            <TextTruncate
               line={7}
               element="p"
               truncateText="…"
               text={data.findVideoByID.description}
-              className="content-text text-gray-100 tracking-tight"
+              className=" text-gray-100 tracking-tight"
             />
-          
-          <p>lat: {data.findVideoByID.latitude}</p>
-          <p>lon: {data.findVideoByID.longitude}</p>
-          <p className="text-gray-100">date: {data.findVideoByID.date}</p>
+          </div>
+          {/* <p>lat: {data.findVideoByID.latitude}</p>
+          <p>lon: {data.findVideoByID.longitude}</p> */}
         </>
       ) : (
         <div>loading...</div>

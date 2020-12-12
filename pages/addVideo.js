@@ -94,11 +94,12 @@ const New = ({ token }) => {
 
   return (
     <Layout>
+     
       <h1 className="text-gray-100 text-2xl mb-2 font-semibold">Add A New Video</h1>
 
-      <form onSubmit={onSubmit} className="form">
+      <form onSubmit={onSubmit} className="form px-6 lg:px-24">
         <div>
-          <label>Name</label>
+          <label className="text-gray-100 leading-loose">Name</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -117,7 +118,7 @@ const New = ({ token }) => {
         </div>
 
         <div>
-          <label>Location</label>
+          <label className="text-gray-100 leading-loose">Location</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -136,7 +137,7 @@ const New = ({ token }) => {
         </div>
 
         <div>
-          <label>Video URL</label>
+          <label className="text-gray-100 leading-loose">Video URL</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -155,7 +156,7 @@ const New = ({ token }) => {
         </div>
 
         <div>
-          <label>Video ID</label>
+          <label className="text-gray-100 leading-loose">Video ID</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -174,7 +175,7 @@ const New = ({ token }) => {
         </div>
 
         <div>
-          <label>City</label>
+          <label className="text-gray-100 leading-loose">City</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -185,7 +186,7 @@ const New = ({ token }) => {
         </div>
 
         <div>
-          <label>Country</label>
+          <label className="text-gray-100 leading-loose">Country</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -196,7 +197,7 @@ const New = ({ token }) => {
         </div>
 
         <div>
-          <label>Description</label>
+          <label className="text-gray-100 leading-loose">Description</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -207,7 +208,7 @@ const New = ({ token }) => {
         </div>
 
         <div>
-          <label>Latitude</label>
+          <label className="text-gray-100 leading-loose">Latitude</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="number" 
@@ -220,7 +221,7 @@ const New = ({ token }) => {
         </div>
 
         <div>
-          <label>Longitude</label>
+          <label className="text-gray-100 leading-loose">Longitude</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="number"
@@ -233,7 +234,7 @@ const New = ({ token }) => {
         </div>
 
         <div>
-          <label>Date</label>
+          <label className="text-gray-100 leading-loose">Date</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -244,29 +245,29 @@ const New = ({ token }) => {
         </div>
 
         <div>
-          <label>Video Host</label>
+          <label className="text-gray-100 leading-loose">Video Host</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
             name="video_host"
-            placeholder="oe8HC3nTArc"
+            placeholder="Youtube"
             ref={register}
           />
         </div>
 
         <div>
-          <label>Credit</label>
+          <label className="text-gray-100 leading-loose">Credit</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
             name="credit"
-            placeholder="oe8HC3nTArc"
+            placeholder="channel"
             ref={register}
           />
         </div>
 
         <div>
-          <label>Image</label>
+          <label className="text-gray-100 leading-loose">Image</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -278,7 +279,7 @@ const New = ({ token }) => {
 
         <div className="mt-4">
           <button
-            className="rounded-md py-2 px-4 text-gray-100 bg-green-500 hover:bg-green-600 focus:outline-none"
+            className="px-8 py-2 text-lg font-semibold text-white rounded-lg bg-gradient-to-r hover:from-teal-400 hover:to-blue-500 from-pink-600 to-orange-500"
             type="submit"
           >
             Create
@@ -291,6 +292,7 @@ const New = ({ token }) => {
           {errorMessage.message}
         </p>
       )}
+     
     </Layout>
   );
 };
