@@ -7,6 +7,7 @@ const walkCard = ({ data }) => {
   //console.log("in walkcard")
 
   const opts = {
+    
     height: "100%",
     width: "100%",
     playerVars: {
@@ -21,7 +22,9 @@ const walkCard = ({ data }) => {
               className="flex flex-col justify-between p-4 bg-opacity-75 bg-gradient-to-r from-purple-700 to-blue-500 text-gray-100 rounded"
             >
               <div>
-                <YouTube videoId={data.video_id} opts={opts} />
+                <div className="relative w-full" style={{paddingBottom: '56.6%'}}>
+                <YouTube videoId={data.video_id} opts={opts} className="absolute top-0 left-0"/>
+                </div>
 
                 <p className="mt-4 text-lg font-semibold">{data.name}</p>
                 {/* <p>location: {data.location}</p> */}

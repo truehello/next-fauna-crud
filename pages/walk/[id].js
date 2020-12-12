@@ -51,8 +51,9 @@ const Walk = ({ token }) => {
 
   // console.log(isOwner, isOwner)
   const opts = {
-    height: '390',
-    width: '640',
+    paddingTop: "56.25%",
+    height: '100%',
+    width: '100%',
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
@@ -69,7 +70,9 @@ const Walk = ({ token }) => {
           <h1 className="text-2xl mb-2 font-semibold text-white">
             {data.findVideoByID.name}
           </h1>
-          <YouTube videoId={data.findVideoByID.video_id} opts={opts}  />
+          <div className="relative w-full" style={{paddingBottom: '56.6%'}}>
+          <YouTube videoId={data.findVideoByID.video_id} opts={opts} className="absolute top-0 left-0" />
+          </div>
           <p className="text-gray-100"> {data.findVideoByID.location}</p>
           <p className="text-gray-100"> {data.findVideoByID.city}</p>
           <p className="text-gray-100"> {data.findVideoByID.country}</p>
