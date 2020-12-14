@@ -98,8 +98,8 @@ const New = ({ token }) => {
       <h1 className="text-gray-100 text-2xl mb-2 font-semibold">Add A New Video</h1>
 
       <form onSubmit={onSubmit} className="form px-6 lg:px-24">
-        <div>
-          <label className="text-gray-100 leading-loose">Name</label>
+        <div className="mb-4">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">Name</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -117,8 +117,9 @@ const New = ({ token }) => {
           )}
         </div>
 
-        <div>
-          <label className="text-gray-100 leading-loose">Location</label>
+        <div className="md:flex mb-4">
+        <div className="md:flex-1 md:pr-3">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">Location</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -136,8 +137,21 @@ const New = ({ token }) => {
           )}
         </div>
 
-        <div>
-          <label className="text-gray-100 leading-loose">Video URL</label>
+        <div className="md:flex-1 md:pl-3">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">Date</label>
+          <input
+            className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+            type="text"
+            name="date"
+            placeholder="e.g. date"
+            ref={register}
+          />
+        </div>
+        </div>
+
+        <div className="md:flex mb-4">
+        <div className="md:flex-1 md:pr-3">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">Video URL</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -155,8 +169,8 @@ const New = ({ token }) => {
           )}
         </div>
 
-        <div>
-          <label className="text-gray-100 leading-loose">Video ID</label>
+        <div className="md:flex-1 md:pl-3">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">Video ID</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -173,9 +187,11 @@ const New = ({ token }) => {
             </span>
           )}
         </div>
+        </div>
 
-        <div>
-          <label className="text-gray-100 leading-loose">City</label>
+        <div className="md:flex mb-4">
+        <div className="md:flex-1 md:pr-3">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">City</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -185,8 +201,8 @@ const New = ({ token }) => {
           />
         </div>
 
-        <div>
-          <label className="text-gray-100 leading-loose">Country</label>
+        <div className="md:flex-1 md:pl-3">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">Country</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -195,10 +211,11 @@ const New = ({ token }) => {
             ref={register}
           />
         </div>
+        </div>
 
-        <div>
-          <label className="text-gray-100 leading-loose">Description</label>
-          <input
+        <div className="mb-4">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">Description</label>
+          <textarea
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
             name="description"
@@ -207,8 +224,9 @@ const New = ({ token }) => {
           />
         </div>
 
-        <div>
-          <label className="text-gray-100 leading-loose">Latitude</label>
+        <div className="md:flex mb-4">
+        <div className="md:flex-1 md:pr-3">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">Latitude</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="number" 
@@ -220,8 +238,8 @@ const New = ({ token }) => {
           />
         </div>
 
-        <div>
-          <label className="text-gray-100 leading-loose">Longitude</label>
+        <div className="md:flex-1 md:pl-3">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">Longitude</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="number"
@@ -232,20 +250,13 @@ const New = ({ token }) => {
             ref={register}
           />
         </div>
-
-        <div>
-          <label className="text-gray-100 leading-loose">Date</label>
-          <input
-            className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-            type="text"
-            name="date"
-            placeholder="e.g. date"
-            ref={register}
-          />
         </div>
 
-        <div>
-          <label className="text-gray-100 leading-loose">Video Host</label>
+        
+
+        <div className="md:flex mb-4">
+        <div className="md:flex-1 md:pr-3">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">Video Host</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -255,8 +266,8 @@ const New = ({ token }) => {
           />
         </div>
 
-        <div>
-          <label className="text-gray-100 leading-loose">Credit</label>
+        <div className="md:flex-1 md:pl-3">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">Credit</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
@@ -265,9 +276,10 @@ const New = ({ token }) => {
             ref={register}
           />
         </div>
+        </div>
 
-        <div>
-          <label className="text-gray-100 leading-loose">Image</label>
+        <div className="mb-4">
+          <label className="block uppercase tracking-wide text-gray-100 text-xs font-bold">Image</label>
           <input
             className="border border-gray-400 bg-gray-200 text-gray-900 p-2 flex-1 block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             type="text"
