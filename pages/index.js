@@ -48,7 +48,7 @@ const Home = ({ token }) => {
   if (error)
     return (
       <Layout>
-        <div>failed to load</div>
+        <div class="flex items-center justify-center text-white">failed to load</div>
       </Layout>
     );
 
@@ -59,7 +59,7 @@ const Home = ({ token }) => {
       {user && (
         <Link href="/addVideo">
           <a className="px-8 py-2 text-lg font-semibold text-white rounded-lg bg-gradient-to-r hover:from-teal-400 hover:to-blue-500 from-pink-600 to-orange-500">
-            Add a Video
+            Add a Walk
           </a>
         </Link>
       )}
@@ -72,7 +72,7 @@ const Home = ({ token }) => {
           ))}
         </ul>
       ) : (
-        <div>loading...</div>
+        <div class="flex items-center justify-center text-white">loading...</div>
       )}
     </Layout>
   );

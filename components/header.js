@@ -19,7 +19,10 @@ const Header = () => {
 
   return (
     <header className="w-full">
-      <nav className="text-purple-100" style={{backgroundColor: 'rgba(74,29,150,1)'}}>
+      <nav
+        className="text-purple-100"
+        style={{ backgroundColor: "rgba(74,29,150,1)" }}
+      >
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -93,13 +96,24 @@ const Header = () => {
 
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <div className="flex items-center">
+                <Link href="/addVideo">
+                  <a className="px-3 py-2 text-sm font-medium text-white rounded-md bg-gradient-to-r hover:from-teal-400 hover:to-blue-500 from-pink-600 to-orange-500">
+                    Add a Walk
+                  </a>
+                </Link>
+
                 {user ? (
                   <>
-                    <div className="flex">
+                    <div className="flex ml-2 ">
                       <Link href="/profile">
-                        <a className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+                        {/* <a className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
                           {user.email}
-                        </a>
+                        </a> */}
+                        <img
+                          className="h-8 w-8 rounded-full"
+                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          alt=""
+                        />
                       </Link>
                     </div>
                     <div>
@@ -113,7 +127,7 @@ const Header = () => {
                   </>
                 ) : (
                   <>
-                    <div className="flex">
+                    <div className="flex ml-2 ">
                       <Link href="/login">
                         <a className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
                           Login
@@ -131,7 +145,7 @@ const Header = () => {
                 )}
               </div>
 
-              <div className="ml-3 relative">
+              {/* <div className="ml-3 relative">
                 <div>
                   <button
                     className="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out"
@@ -146,7 +160,7 @@ const Header = () => {
                     />
                   </button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
