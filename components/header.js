@@ -64,34 +64,19 @@ const Header = () => {
             </div>
             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex-shrink-0">
-                <Link href="/">
-                  <a>
+                <Link href="/" >
+                  <a className="flex items-center">
                     <img
-                      className="block lg:hidden h-8 w-auto"
+                      className="block h-8 w-auto"
                       src="https://tailwindui.com/img/logos/v1/workflow-mark-on-dark.svg"
                       alt="Workflow logo"
                     />
+                    <span className="ml-2 text-2xl text-white lowercase font-semibold">walkflow</span>
                   </a>
                 </Link>
-                <Link href="/">
-                  <a>
-                    <img
-                      className="hidden lg:block h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/v1/workflow-logo-on-dark.svg"
-                      alt="Workflow logo"
-                    />
-                  </a>
-                </Link>
+                
               </div>
-              {/* <div className="hidden sm:block sm:ml-6">
-                <div className="flex">
-                  <Link href="/">
-                    <a className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
-                      Home
-                    </a>
-                  </Link>
-                </div>
-              </div> */}
+              
             </div>
 
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
