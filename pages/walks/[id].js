@@ -1,20 +1,28 @@
+import { useRouter } from "next/router";
 import useSWR from "swr";
 import { gql } from "graphql-request";
 
-import Layout from "../components/layout";
-import { graphQLClient } from "../utils/graphql-client";
 import Link from "next/link";
-import { getAuthCookie } from "../utils/auth-cookies";
-import WalkCard from "../components/walkCard";
+import { graphQLClient } from "../../utils/graphql-client";
+import { getAuthCookie } from "../../utils/auth-cookies";
+import Layout from "../../components/layout";
+import WalkCard from "../../components/walkCard";
 
-const Home = ({ token }) => {
-  const fetcher = async (query) => await graphQLClient(token).request(query);
-
+const Walks = ({ token }) => {
+  const router = useRouter();
   const { data: user } = useSWR("/api/user");
+
+  const { id } = router.query;
+  //const { cursor } = "2DOB2DRyMjg3NzM0MDYxMjAxMzU5MzczgWVWaWRlb4FnY2xhc3Nlc4CAgIA="
+
+  console.log("cursor", id)
+  const fetcher = async (query) =>
+    await graphQLClient(token).request(query, { id });
+
   const { data, error, before, after, mutate } = useSWR(
     gql`
-      {
-      allVideos(_size: 12 ){
+      query ListVideoByCursor($id: String) {
+        allVideos(_size: 4, _cursor: $id) {
           data {
             _id
             name
@@ -47,17 +55,7 @@ const Home = ({ token }) => {
 
   return (
     <Layout>
-      <h1 className="text-2xl py-4 mb-4 font-semibold text-white lowercase">
-        WalkFlow
-      </h1>
-      {/* show add a video link if user is logged in */}
-      {user && (
-        <Link href="/addVideo">
-          <a className="px-8 py-2 text-lg font-semibold text-white rounded-lg bg-gradient-to-r hover:from-teal-400 hover:to-blue-500 from-pink-600 to-orange-500">
-            Add a Walk
-          </a>
-        </Link>
-      )}
+     
 
       {data ? (
         <>
@@ -67,9 +65,9 @@ const Home = ({ token }) => {
             ))}
           </ul>
           <div className="mt-4 flex justify-between px-8">
-            {data.allVideos.before ? (
+          {data.allVideos.before ? (
                <Link href="/walks/[id]" as={`/walks/${data.allVideos.before}`}>
-                 <a
+                   <a
                 className="px-8 py-2 text-lg font-semibold text-white rounded-lg bg-gradient-to-r hover:from-teal-400 hover:to-blue-500 from-pink-600 to-orange-500"
               >
                 Prev
@@ -80,7 +78,7 @@ const Home = ({ token }) => {
             )}
             {data.allVideos.after ? (
                <Link href="/walks/[id]" as={`/walks/${data.allVideos.after}`}>
-               <a 
+                   <a
                 className="px-8 py-2 text-lg font-semibold text-white rounded-lg bg-gradient-to-r hover:from-teal-400 hover:to-blue-500 from-pink-600 to-orange-500"
               >
                 Next
@@ -105,4 +103,4 @@ export async function getServerSideProps(ctx) {
   return { props: { token: token || null } };
 }
 
-export default Home;
+export default Walks;

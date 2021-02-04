@@ -15,12 +15,14 @@ const Profile = ({ token }) => {
 
   return (
     <Layout>
-      <h1>Hello from profile</h1>
-      {user ? (
-        <p>{user.email}</p>
-      ) : (
-        <div className="flex">you need to be logged in</div>
-      )}
+      <div className="flex flex-col items-center justify-center text-white">
+        <h1>Hello from profile</h1>
+        {user ? (
+          <p>{user.email}</p>
+        ) : (
+          <div className="flex">you need to be logged in</div>
+        )}
+      </div>
     </Layout>
   );
 };
