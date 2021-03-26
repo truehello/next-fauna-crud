@@ -64,6 +64,7 @@ const New = ({ token }) => {
               date: $date
               image: $image
               owner: { connect: $owner }
+             
             }
           ) {
             name

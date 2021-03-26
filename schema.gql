@@ -1,14 +1,10 @@
-type Todo {
-  task: String!
-  completed: Boolean!
-  owner: User!
-}
 
 type Video {
   name: String!
   location: String!
   city: String
   country: String
+  continent: String
   latitude: Int
   longitude: Int
   description: String
@@ -19,16 +15,25 @@ type Video {
   video_host: String
   credit: String
   owner: User!
+  createdAt: Date
+  updatedAt: Date
 }
+
+
 
 type User {
   email: String! @unique
-  todos: [Todo!] @relation
   videos: [Video!] @relation
+  firstName: String
+  lastName: String
+  createdAt: Date
+  updatedAt: Date
 }
 
 type Query {
-  allTodos: [Todo!]
   allVideos: [Video!]
+  findVideosByCountry(country: String!): [Video!]
+  findVideosByCity(city: String!): [Video!]
+  findVideosByContinent(continent: String!): [Video!]
 }
 
