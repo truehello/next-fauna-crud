@@ -22,7 +22,7 @@ const Signup = () => {
         },
         body: JSON.stringify(formData),
       });
-
+      console.error("response", res);
       if (res.ok) {
         router.push("/");
       } else {
@@ -49,6 +49,7 @@ const Signup = () => {
                 aria-label="Email address"
                 type="email"
                 name="email"
+                autoComplete ="username"
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
                 placeholder="e.g. john@example.com"
                 ref={register({ required: "Email is required" })}
@@ -62,6 +63,7 @@ const Signup = () => {
                 aria-label="Password"
                 type="password"
                 name="password"
+                autoComplete ="new-password"
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
                 placeholder="e.g. John-1234"
                 ref={register({ required: "Password is required" })}
@@ -79,6 +81,7 @@ const Signup = () => {
                 aria-label="Confirm Password"
                 type="password"
                 name="password2"
+                autoComplete ="new-password"
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
                 placeholder="e.g. John-1234"
                 ref={register({

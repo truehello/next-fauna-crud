@@ -23,7 +23,7 @@ const Walks = ({ token }) => {
     [
       gql`
         query ListVideoByCursor($id: String) {
-          allVideos(_size: 4, _cursor: $id) {
+          allVideos(_size: 8, _cursor: $id) {
             data {
               _id
               name
@@ -56,14 +56,6 @@ const Walks = ({ token }) => {
       </Layout>
     );
 
-  if (!data)
-    return (
-      <Layout>
-        <div className="flex items-center justify-center text-white">
-          loading....
-        </div>
-      </Layout>
-    );
 
   return (
     <Layout>
@@ -74,21 +66,12 @@ const Walks = ({ token }) => {
             before={data.allVideos.before}
             after={data.allVideos.after}
           />
-          {/* <button onClick={() => setPageId(data.allVideos.before)}>
-            Previous
-          </button>
-
-          <Link href={`/walks/[id]`} as={`${data.allVideos.after}`}>
-            <a
-              onClick={() => setPageId(data.allVideos.after)}
-              className="px-8 py-2 text-lg font-semibold text-white rounded-lg bg-gradient-to-r hover:from-teal-400 hover:to-blue-500 from-pink-600 to-orange-500"
-            >
-              Next
-            </a>
-          </Link> */}
+         
         </>
       ) : (
-        <p>its not working. Why? </p>
+        <div className="flex items-center justify-center text-white">
+          loading....
+        </div>
       )}
     </Layout>
   );

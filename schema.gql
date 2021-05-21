@@ -1,5 +1,5 @@
 
-type Video {
+type Video @collection(name: "Video") {
   name: String!
   location: String!
   city: String
@@ -32,6 +32,7 @@ type User {
 
 type Query {
   allVideos: [Video!]
+  newestVideos: [Video!]  @resolver(name: "latestVideos", paginated: true)
   findVideosByCountry(country: String!): [Video!]
   findVideosByCity(city: String!): [Video!]
   findVideosByContinent(continent: String!): [Video!]

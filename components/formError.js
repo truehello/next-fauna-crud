@@ -13,7 +13,7 @@ const formError = ({ message }) => (
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      class="ml-2 mr-4"
+      className="ml-2 mr-4"
     >
       <circle cx="12" cy="12" r="10"></circle>
       <line x1="15" y1="9" x2="9" y2="15"></line>
