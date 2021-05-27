@@ -23,7 +23,7 @@ const Walks = ({ token }) => {
     [
       gql`
         query ListVideoByCursor($id: String) {
-          allVideos(_size: 8, _cursor: $id) {
+          newestVideos(_size: 8, _cursor: $id) {
             data {
               _id
               name
@@ -61,10 +61,10 @@ const Walks = ({ token }) => {
     <Layout>
       {data ? (
         <>
-          <WalkList index={id} data={data.allVideos.data} />
+          <WalkList index={id} data={data.newestVideos.data} />
           <Pagination
-            before={data.allVideos.before}
-            after={data.allVideos.after}
+            before={data.newestVideos.before}
+            after={data.newestVideos.after}
           />
          
         </>

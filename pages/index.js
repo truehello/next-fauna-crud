@@ -17,7 +17,7 @@ const Home = ({ token }) => {
   const { data, error } = useSWR(
     gql`
       {
-        allVideos(_size: 4) {
+        newestVideos(_size: 4) {
           data {
             _id
             name
@@ -97,15 +97,15 @@ const Home = ({ token }) => {
       {data ? (
         <>
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4 lg:px-16">
-            {data.allVideos.data.map((video) => (
+            {data.newestVideos.data.map((video) => (
               <WalkCard data={video} key={video._id} />
             ))}
           </ul>
           <div className="mt-4 flex justify-end px-8">
-            {data.allVideos.after ? (
+            {data.newestVideos.after ? (
               <Link
-                href="/walks/[id]?id=${data.allVideos.after}"
-                as={`/walks/${data.allVideos.after}`}
+                href="/walks/[id]?id=${data.newestVideos.after}"
+                as={`/walks/${data.newestVideos.after}`}
               >
                 <a className="px-8 py-2 text-lg font-semibold text-white rounded-lg bg-gradient-to-r hover:from-teal-400 hover:to-blue-500 from-pink-600 to-orange-500">
                   More
